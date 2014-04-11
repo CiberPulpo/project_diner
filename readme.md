@@ -18,7 +18,16 @@ Nuestra documentación [PROJECT DINER](https://readthedocs.org/).
 
 ### Instalación
 
-	git clone https://github.com/CiberPulpo/project_diner.git
+1. Tener instalado [COMPOSER](https://getcomposer.org/download/)
+
+2. Clonar repositorio en una ruta especifica desde cmd y ejecutar:
+
+		git clone https://github.com/CiberPulpo/project_diner.git
+
+3. Luego ejecutar comando para instalar las dependecias:
+
+		composer install
+
 
 ### Licencia
 
