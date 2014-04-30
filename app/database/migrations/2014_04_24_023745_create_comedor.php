@@ -16,16 +16,20 @@ class CreateComedor extends Migration {
 			$tabla->string('descripcion',50);
 		});
 
-		// Schema::create('cargo', function($tabla) {
-		// 	$tabla->increments('id');
-		// 	$tabla->timestamps();
-		// });
-
-		Schema::create('usuario', function($tabla) {
+		Schema::create('cargo', function($tabla) {
 			$tabla->increments('id');
 			$tabla->string('nombre',45);
 			$tabla->string('descripcion',100);
 			$tabla->boolean('estado');
+		});
+
+		Schema::create('usuario', function($tabla) {
+			$tabla->increments('id');
+			$tabla->string('user',40);
+			$tabla->string('password',40);
+			$tabla->string('email',45);
+			$tabla->integer('cargo_id')->unsigned();
+			$tabla->foreign('cargo_id')->references('id')->on('cargo');
 		});
 
 		Schema::create('facultad', function($tabla) {
@@ -59,9 +63,9 @@ class CreateComedor extends Migration {
 			$tabla->boolean('estadomatricula');
 			$tabla->string('numExpediente',6);
 			$tabla->boolean('estado');
-			$tabla->integer('permisoRecojo_id')->unsigned();
+			$tabla->integer('permisoRecojo_id')->unsigned()->nullable();
 			$tabla->foreign('permisoRecojo_id')->references('id')->on('permisoRecojo');
-			$tabla->integer('usuario_id')->unsigned();
+			$tabla->integer('usuario_id')->unsigned()->nullable();
 			$tabla->foreign('usuario_id')->references('id')->on('usuario');
 			$tabla->integer('escuela_id')->unsigned();
 			$tabla->foreign('escuela_id')->references('id')->on('escuela');
@@ -135,11 +139,12 @@ class CreateComedor extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('permisoRecojo');
-		Schema::drop('usuario');
-		Schema::drop('facultad');
-		Schema::drop('escuela');
 		Schema::drop('estudiante');
+		Schema::drop('escuela');
+		Schema::drop('facultad');
+		Schema::drop('usuario');
+		Schema::drop('cargo');
+		Schema::drop('permisoRecojo');
 	}
 
 }
