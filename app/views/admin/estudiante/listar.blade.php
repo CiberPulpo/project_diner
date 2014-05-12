@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('admin.layout')
 
 @section('titulo') ADMINISTRACIÓN COMENSALES @stop
 
